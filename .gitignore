@@ -1,5 +1,6 @@
 solution/
 .env
+lab.md
 lab.txt
 .venv/
 src/*.egg-info/

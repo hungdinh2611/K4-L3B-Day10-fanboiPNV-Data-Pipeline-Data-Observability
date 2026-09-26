@@ -1,0 +1,26 @@
+[
+  {
+    "question": "What is the summary of the paper 'Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks'?",
+    "answer": [
+      {
+        "type": "text",
+        "text": "Based on the indexed paper corpus, the summary and details for **\"Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\"** are as follows:\n\n* **Title:** Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks\n* **Authors:** Minh Nguyen, Hoang Le\n* **Publication Date:** May 20, 2026\n* **Categories:** Artificial Intelligence, Information Retrieval\n* **Paper ID (DOI):** `10.1145/3637528.3671801`\n\n### Summary\nRetrieval-Augmented Generation (RAG) significantly improves large language model accuracy by grounding responses in retrieved passages. The authors explore agentic multi-hop reasoning and routing across heterogeneous vector indices to handle knowledge-intensive tasks.",
+        "extras": {
+          "signature": "EoAFCv0EAWkUfRMvAuCQIBvaTLoP4exAKo6DFb64y7j64AXDkAbuW5kE0sefGnJy8l4bj6UsAYVLGfZ5Pi3d1G35+AGZpGiQkVFTIBa4WEUepx0g3NzuRKQGfHRLuiVB/QOBenTB3cUZEbigYttMV7lIsgMnsNWwpFQ3CsO/TNGjo3KtlHMmtfDzY1dCnzlmOW4J+jz4zmSmsxNXDk5S1uwDIwujS4wfZzmbidPVgXMUFpzYFXu6t0VdS4xO7VsTZtA/c2VaQwVkRLCF+EOftZY2Wpe9trmbhj99NYVW0hqzBBqEC91ajbslG+gRcl2sKaY9ElksfLpgAibTBdMv98Ge/WUY59T7NYe1I58N8zi+SYfK8bIvX8g5dx3kggNAP1E5pVpQeAAHjnX4qybXwgsK5FnkxPDh/Vp0kl6eg3wlryhMKWaM8fQPhI5nLaMHMjSfkSGfyMg1TLHreFM/aYyNuo75vmN74nrCP4DtQN3aOP6xh3x+6LXxMlGd7+s/x5x/pr3KaGay1Xz88XIi9UVsocBikUJ1jUgBY5K18yrnOa0FjATC3vRqu3suDjSeVhOCpJz1D237UUmyi9joysAIEO6vIzQ+/50zcxUJ/W2Pk1n1RA16vVOlOfef/SJlwIvoRtYDmhHp/kUWXKLm+a0U0OHqAV0ieoVo6Z0n9xJdN3dYE5NejFh1EW+uKlAxR5WIHqL22I3v5HnXAGuuaEYjymW4YVBMchYvEwXOkwuGl7wdLPKShoQrH3H+5vckvwyf7dUbu5d6tabCKzCV6YN816asioqgZPrni/Le7bHmwYwEqDJmRKlu7DaUhmfC5i26R15LuqizEoDdaLRwXoKg2g=="
+        }
+      }
+    ]
+  },
+  {
+    "question": "Who authored the paper 'Mitigating Ghost Vectors in Dense Retrieval via Idempotent Indexing'?",
+    "answer": [
+      {
+        "type": "text",
+        "text": "The paper **\"Mitigating Ghost Vectors in Dense Retrieval via Idempotent Indexing\"** was authored by **Duc Vu** and **Thao Dang**.",
+        "extras": {
+          "signature": "ErgCCrUCAWkUfRNIX74DaLj4a4VVncIgl5AdsjsD+sFFa4FnpcT9GHhRyoLeJoISNa8Hl159mjoJzDnXnEcCkhWOjBU3UjWnR5g6K33A62av6r+xgrCC2z0QbztDVD7w39Y3uqmHPIZejkad3sNw/vcLVu1kANN1fI/qy9kFt0UCJePmIVMxDgiCyPV+25oE00l+ZmuIvmoJ9No2tHfNwInlGSkafmG0nHBUWBFUSAS1p2NxN+VmNRunDvWeF3tuP3LNYau2SGA/xDtvE8Cf3dpt0xCkyXm7e9PiN9fZ3C0viziPyj07y75y3XBqo2uHTPyNScqCbJ+aMSztuHqtBN8kPiScLDRW3vg0RA8ctJfqZOb23bss6cqRdk5n3Y+Ti5cNGUTB8ajyGmsHf9m6ISdO873U+cyhsQVQ"
+        }
+      }
+    ]
+  }
+]
