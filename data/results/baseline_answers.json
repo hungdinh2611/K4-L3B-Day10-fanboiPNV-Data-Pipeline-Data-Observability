@@ -54,7 +54,7 @@
     "judge": {
       "score": 5,
       "correct": true,
-      "reasoning": "The model answer exactly matches the reference answer."
+      "reasoning": "Fallback heuristic judge used because the LLM evaluator was unavailable."
     }
   },
   {

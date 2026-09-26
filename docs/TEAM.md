@@ -1,58 +1,69 @@
 # Danh Sách Thành Viên & Báo Cáo Phân Công Nhóm
 
-- **Tên Nhóm:** `[Điền tên nhóm]`
-- **Mã Nhóm / Lớp:** `K4-L3-DAY10`
-- **Tên Repository Nộp Bài:** `K4-L3-DAY10-TenNhom-DataPipeline`
+- **Tên Nhóm:** `fanboiPNV`
+- **Mã Nhóm / Lớp:** `K4-L3B-DAY10`
+- **Tên Repository Nộp Bài:** `K4-L3B-Day10-fanboiPNV-Data-Pipeline-Data-Observability` — https://github.com/hungdinh2611/K4-L3B-Day10-fanboiPNV-Data-Pipeline-Data-Observability
 
 ---
 
 ## # Thành viên
 
+Phân công được đối chiếu với lịch sử commit trên nhánh `main` (`git log`). Email là email commit, trùng với tài khoản GitHub của từng người.
+
 | STT | Họ và tên | MSSV | Email | Vai trò & Phân công công việc | Báo cáo cá nhân |
 |---:|---|---|---|---|---|
-| 1 | | | | Trưởng nhóm / Pipeline Integrator (`core/`, `phase1.py`, `corruption_flow.py`) | `report/<MSSV1>_HoTen.md` |
-| 2 | | | | Data Foundation & Recovery (`crossref.py`, `cleaning.py`, raw data) | `report/<MSSV2>_HoTen.md` |
-| 3 | | | | RAG & Vector Index (`retrieval/index.py`, `embeddings.py`, ChromaDB) | `report/<MSSV3>_HoTen.md` |
-| 4 | | | | Observability & Evaluation (`quality.py` GX 1.x, `testset.py`, reporting) | `report/<MSSV4>_HoTen.md` |
-
-*(Nếu nhóm có 3 hoặc 5-6 thành viên, xem bảng phân công chi tiết theo vai trò trong file `CHECKPOINTS.md`)*.
+| 1 | Mai Văn Trung | 2A202602513 | trungmv2004@gmail.com | Trưởng nhóm / Pipeline Integrator (`phase1.py`, `corruption_flow.py`, repair, demo UI) | `report/individual_2A202602513_MaiVanTrung.md` |
+| 2 | Đinh Bảo Hưng | 2A202602524 | dinhbaohungminecraft123@gmail.com | RAG & Vector Index / Artifacts (ChromaDB, embeddings, `data/`) | `report/individual_2A202602524_DinhBaoHung.md` |
+| 3 | Ngô Văn Giáp | 2A202602644 | ngogiap1004@gmail.com | Data Foundation & Corruption (`crossref.py`, `cleaning.py`, `corruption.py`) | `report/individual_2A202602644_NgoVanGiap.md` |
+| 4 | Hoàng Anh Tú | 2A202602643 | ttien0181@gmail.com | Observability & Reporting (`quality.py` GX 1.x, `reporting.py`) | `report/individual_2A202602643_HoangAnhTu.md` |
+| 5 | Nguyễn Thành Nam | 2A202602694 | nguyenthanhnam12042004@gmail.com | Evaluation Set (`testset.py`, `data/eval/`) | `report/individual_2A202602694_NguyenThanhNam.md` |
 
 ---
 
 ## # Cá nhân
 
-### ## HoVaTen1-MSSV1
+### ## MaiVanTrung-2A202602513
 - **Vai trò:** Trưởng nhóm & Điều phối Pipeline.
 - **Công việc chi tiết đã hoàn thành:**
-  - Thiết lập cấu hình hệ thống `core/config.py` và đường dẫn artifacts `core/utils.py`.
-  - Kết nối luồng thực thi trong `src/pipelines/phase1.py` và `src/pipelines/corruption_flow.py`.
-  - Kiểm tra tính nhất quán của các artifacts và theo dõi Contributor tracking trên GitHub nhánh `main`.
+  - Hoàn thiện `run_phase1_pipeline` trong `src/pipelines/phase1.py`, xâu chuỗi các bước Ingest → Clean → Index ChromaDB → Testset → Evaluate → Quality Gate → `data/reports/phase1_report.md`.
+  - Hoàn thiện `run_corruption_flow_pipeline` và `repair_from_raw_snapshot` trong `src/pipelines/corruption_flow.py`: corrupt → evaluate → gate → repair idempotent từ raw records → so sánh 3 trạng thái.
+  - Merge và tích hợp module của các thành viên, rồi chạy lại toàn bộ flow để kiểm tra (commit `fdb521f`, `d07cec8`).
+  - Xây dựng demo UI `src/demo_ui/` (phong cách Brutalism, `script/run_demo_ui.py`) cho bonus B1, và viết kịch bản thuyết trình `report/presentation_script.md`.
 - **Điều học được / Đóng góp chính:**
-  - Hiểu sâu sắc về thiết kế Idempotent Pipeline và quản lý trạng thái luồng dữ liệu đa tầng.
+  - Thiết kế pipeline idempotent: repair phụ thuộc raw snapshot chứ không phụ thuộc trạng thái hỏng, và collection được tạo lại mỗi lần index.
+  - Chỉ nhìn metric của AI thì không đủ để phát hiện dữ liệu hỏng (silent failure), nên cần có gate ở tầng dữ liệu.
 
-### ## HoVaTen2-MSSV2
-- **Vai trò:** Phụ trách Ingestion, Làm sạch & Phục hồi dữ liệu.
+### ## DinhBaoHung-2A202602524
+- **Vai trò:** Phụ trách RAG, Vector Database & Artifacts.
 - **Công việc chi tiết đã hoàn thành:**
-  - Xây dựng module thu thập Crossref API với cơ chế Fallback offline trong `src/ingestion/crossref.py`.
-  - Chuẩn hóa schema, tính toán trường `age_days` và `text_for_embedding` trong `src/ingestion/cleaning.py`.
-  - Thực thi cơ chế Idempotent Repair phục hồi dữ liệu từ raw snapshot.
+  - Chạy pipeline để sinh và quản lý 3 collection ChromaDB riêng biệt (`papers-baseline`, `papers-corrupted`, `papers-repaired`) với embedding `sentence-transformers/all-MiniLM-L6-v2`.
+  - Commit bộ artifact làm bằng chứng: `data/chroma/`, `data/embeddings/`, `data/eval/`, `data/quality/`, `data/results/`, `data/reports/` (commit `ce49f22`).
+  - Quản lý repository nhóm (fork, mời collaborator).
 - **Điều học được / Đóng góp chính:**
-  - Kỹ thuật truy vết nguồn gốc dữ liệu (Data Lineage) và bảo toàn raw snapshot trước khi biến đổi.
+  - Cô lập các không gian vector để so sánh khách quan dữ liệu sạch, dữ liệu bẩn và dữ liệu đã phục hồi trên cùng một test set.
 
-### ## HoVaTen3-MSSV3
-- **Vai trò:** Phụ trách RAG, Vector Database & Embedding.
+### ## NgoVanGiap-2A202602644
+- **Vai trò:** Phụ trách Ingestion, Làm sạch & Corruption.
 - **Công việc chi tiết đã hoàn thành:**
-  - Quản lý mô hình embedding `sentence-transformers/all-MiniLM-L6-v2`.
-  - Nạp và quản lý 3 collection riêng biệt trong ChromaDB (`papers-baseline`, `papers-corrupted`, `papers-repaired`).
-  - Xây dựng QA Agent truy vấn ngữ cảnh chính xác theo tài liệu.
+  - `src/ingestion/crossref.py`: parse payload Crossref (DOI, title, abstract bỏ thẻ JATS, authors, subject, ngày). Mặc định đọc snapshot offline, retry 429/5xx và fallback về snapshot.
+  - `src/ingestion/cleaning.py`: chuẩn hóa text, tính `age_days`, dedupe theo `paper_id`, ghép `text_for_embedding` gồm 5 phần.
+  - `src/ingestion/corruption.py`: 6 kịch bản lỗi (drop latest, blank summary, inject noise, truncate title, stale date, duplicate rows) với seed 42, ghi `data/results/corruption_log.json` (commit `53b5fec`).
 - **Điều học được / Đóng góp chính:**
-  - Cách cô lập các không gian vector để so sánh khách quan giữa dữ liệu sạch và dữ liệu bị lỗi.
+  - Data lineage: giữ nguyên raw snapshot trước mọi biến đổi để làm điểm neo phục hồi.
 
-### ## HoVaTen4-MSSV4
-- **Vai trò:** Phụ trách Data Observability & Benchmark Evaluation.
+### ## HoangAnhTu-2A202602643
+- **Vai trò:** Phụ trách Data Observability & Reporting.
 - **Công việc chi tiết đã hoàn thành:**
-  - Thiết lập Quality Gate theo chuẩn mới **Great Expectations 1.x** và giám sát Freshness SLA trong `src/observability/quality.py`.
-  - Xây dựng bộ câu hỏi đánh giá chuẩn trong `src/evaluation/testset.py`.
-  - Đo lường và xuất bảng đối chiếu 3 trạng thái vào `data/reports/corruption_report.md`.
+  - Thiết lập Quality Gate chuẩn **Great Expectations 1.x** (Ephemeral Context) trong `src/observability/quality.py`, gồm 4 expectations: row count, not null, unique `paper_id`, độ dài summary.
+  - Xây dựng `evaluate_freshness_sla` (tỉ lệ bài có `age_days > 180` không vượt quá 25%) và `build_freshness_report`.
+  - Viết `src/observability/reporting.py` để sinh `phase1_report.md` và bảng đối chiếu 3 trạng thái trong `corruption_report.md` (commit `cf91356`).
 - **Điều học được / Đóng góp chính:**
-  - Cách thiết lập hệ thống cảnh báo sớm chặn đứng hiện tượng Silent Failure trước khi dữ liệu vào serving layer.
+  - Thiết lập cảnh báo sớm để bắt silent failure trước khi dữ liệu vào serving layer. Gate bắt được blank summary, duplicate và stale date, nhưng bỏ lọt drop, noise và truncate; đây là hướng cần cải thiện.
+
+### ## NguyenThanhNam-2A202602694
+- **Vai trò:** Phụ trách Benchmark Evaluation Set.
+- **Công việc chi tiết đã hoàn thành:**
+  - Xây dựng `build_test_set` trong `src/evaluation/testset.py`: 10 câu hỏi trải đều corpus, gồm 4 dạng `summary` / `authors` / `date` / `categories`. Ground truth là DOI và trường tương ứng, lưu vào `data/eval/test_set.json` (commit `7be6a50`).
+  - Đảm bảo test set có tính tất định và được dùng chung cho cả 3 trạng thái baseline, corrupted và repaired.
+- **Điều học được / Đóng góp chính:**
+  - Thiết kế test set ảnh hưởng trực tiếp đến kết luận: 8/10 câu có tài liệu bị phá nhưng chỉ 2 câu trả lời sai, nên metric trên test set đánh giá thấp mức thiệt hại.

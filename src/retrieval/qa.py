@@ -7,6 +7,11 @@ from core.config import Settings
 from core.utils import first_sentence
 from retrieval.index import LocalEmbeddingIndex, SearchResult
 
+# Cosine similarity toi thieu cua top-1 de coi la cau hoi thuoc corpus.
+# Do thuc te: cau trong test set >= 0.53, cau ngoai domain <= 0.14.
+MIN_RELEVANCE_SCORE = 0.3
+NO_ANSWER = "I don't know from the indexed corpus."
+
 
 @dataclass(frozen=True)
 class AnswerResult:
@@ -43,8 +48,9 @@ def answer_question(question: str, settings: Settings, index: LocalEmbeddingInde
         )
         deduped = [exact_result] + [item for item in retrieved if item.paper_id != exact_result.paper_id]
         retrieved = deduped[: (top_k or settings.top_k)]
-    if not retrieved:
-        answer = "I don't know from the indexed corpus."
+    # Van tra ve retrieved docs de do retrieval hit, nhung khong trich cau tra loi tu tai lieu khong lien quan.
+    if not retrieved or retrieved[0].score < MIN_RELEVANCE_SCORE:
+        answer = NO_ANSWER
     else:
         answer = _extract_answer(question, retrieved[0])
     return AnswerResult(
